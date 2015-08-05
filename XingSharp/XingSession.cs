@@ -79,6 +79,17 @@ namespace XingSharp
 		public DisconnectCallback DisconnectCB;
 
 		private XingQuery query_ { get; set; }
+		private IntPtr hwnd_;
+
+
+
+
+
+		public XingSession(IntPtr hwnd)
+		{
+			hwnd_ = hwnd;
+		}
+
 
 
 
@@ -94,6 +105,69 @@ namespace XingSharp
 				case XING_MSG.XM_DISCONNECT:		XMDisconnect(ref m);	break;
 			};
 		}
+
+
+
+
+
+		public int Connect(string host, int port)
+		{
+			bool ret = false;
+
+			ret = ETK_Connect(hwnd_, host, port, (int)XING_MSG.WM_USER, 10 * 1000, -1);
+			if (ret == false) return -1;
+
+			return 0;
+		}
+
+
+
+
+
+		public int Login(string id, string pw, string cert_pw)
+		{
+			bool ret = false;
+
+			ret = ETK_Login(hwnd_, id, pw, cert_pw, 0, false);
+			if (ret == false) return -1;
+
+			return 0;
+		}
+
+
+
+
+
+
+		public void Disconnect()
+		{
+			ETK_Disconnect();
+		}
+
+
+
+
+
+		public int AccountListCount()
+		{
+			return ETK_GetAccountListCount();
+		}
+
+
+
+
+
+		public string AccountList(int idx)
+		{
+			IntPtr acc_no_ptr = Marshal.AllocHGlobal(20);
+			ETK_GetAccountList(idx, acc_no_ptr, 20);
+
+			string acc_no = Marshal.PtrToStringAnsi(acc_no_ptr);
+			Marshal.FreeHGlobal(acc_no_ptr);
+
+			return acc_no;
+		}
+
 
 
 
@@ -207,6 +281,31 @@ namespace XingSharp
 		{
 			int RequestID = (int)m.LParam;
 			ETK_ReleaseRequestData(RequestID);
+		}
+
+
+
+
+
+
+		public int Execute<INBLOCK_T>(XingQuery query, bool continue_req)
+		{
+			INBLOCK_T in_block = (INBLOCK_T)query.InBlock;
+
+			int data_size = Marshal.SizeOf(in_block);
+			IntPtr data_ptr = Marshal.AllocHGlobal(data_size);
+			Marshal.StructureToPtr(in_block, data_ptr, false);
+			query_ = query;
+
+			int ec = ETK_Request(hwnd_, query.TRCode, data_ptr, data_size, continue_req, "", query.TimeoutSec);
+			if (ec < 0)
+			{
+				if (query.ErrorCB != null) query.ErrorCB(ec, "ETK_Request fail. : last_error(" + ETK_GetLastError() + ")");
+				return -1;
+			}
+
+			Marshal.FreeHGlobal(data_ptr);
+			return 0;
 		}
 
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace XingSharp
 {
 	[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-	class XmReceiveRealData
+	public class XmReceiveRealData
 	{
 		[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 3 + 1)]
 		public string TRCode;

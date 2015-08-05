@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace XingSharp
 {
 	[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-	class XmReceiveData
+	public class XmReceiveData
 	{
 		public int RequestID;
 		public int DataLength;
