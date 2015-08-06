@@ -9,6 +9,10 @@ namespace XingSharp
 {
 	public class TRRequest
 	{
+		public delegate void OnComplete(TRResult tr_res);
+		public OnComplete CompleteCB;
+
+
 		public TRRequest()
 		{
 		}

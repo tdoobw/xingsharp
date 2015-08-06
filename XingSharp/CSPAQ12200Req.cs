@@ -9,12 +9,6 @@ namespace XingSharp
 {
 	public class CSPAQ12200Req : TRRequest
 	{
-		public delegate void OnComplete(TRResult tr_res);
-		public OnComplete CompleteCB;
-
-
-
-
 		public CSPAQ12200Req()
 		{
 		}

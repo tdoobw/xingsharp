@@ -43,6 +43,8 @@
     <Compile Include="CSPAQ12200.cs" />
     <Compile Include="CSPAQ12200Req.cs" />
     <Compile Include="MultiMap.cs" />
+    <Compile Include="t1102.cs" />
+    <Compile Include="t1120req.cs" />
     <Compile Include="TRRequest.cs" />
     <Compile Include="TRResult.cs" />
     <Compile Include="XingSession.cs" />
