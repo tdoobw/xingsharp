@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,12 +10,14 @@ namespace XingSharp
 {
 	public class TRRequest
 	{
-		public delegate void OnComplete(TRResult tr_res);
+		protected EndPoint ep_;
+		public delegate void OnComplete(EndPoint ep, TRResult tr_res);
 		public OnComplete CompleteCB;
 
 
-		public TRRequest()
+		public TRRequest(EndPoint ep)
 		{
+			ep_ = ep;
 		}
 
 		public void PushResult<T>(T inst, string obj_name, ref TRResult result)

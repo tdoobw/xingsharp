@@ -4,13 +4,21 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+
+
+
+
+
 
 namespace XingSharp
 {
 	public class t1102Req : TRRequest
 	{
-		public t1102Req()
+		public t1102Req(EndPoint ep)
+		: base(ep)
 		{
+			
 		}
 
 
@@ -54,7 +62,7 @@ namespace XingSharp
 			t1102._t1102OutBlock out_block = (t1102._t1102OutBlock)Marshal.PtrToStructure(data.Data, typeof(t1102._t1102OutBlock));
 			PushResult<t1102._t1102OutBlock>(out_block, "out_block", ref tr_res);
 
-			if (CompleteCB != null) CompleteCB(tr_res);
+			if (CompleteCB != null) CompleteCB(ep_, tr_res);
 		}
 
 

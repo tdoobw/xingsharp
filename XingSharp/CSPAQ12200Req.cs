@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,10 @@ namespace XingSharp
 {
 	public class CSPAQ12200Req : TRRequest
 	{
-		public CSPAQ12200Req()
+		public CSPAQ12200Req(EndPoint ep) 
+		: base(ep)
 		{
+			
 		}
 
 
@@ -52,7 +55,7 @@ namespace XingSharp
 			CSPAQ12200._CSPAQ12200OutBlock2 out_block2 = (CSPAQ12200._CSPAQ12200OutBlock2)Marshal.PtrToStructure(IntPtr.Add(data.Data, Marshal.SizeOf(out_block1)), typeof(CSPAQ12200._CSPAQ12200OutBlock2));
 			PushResult<CSPAQ12200._CSPAQ12200OutBlock2>(out_block2, "out_block2", ref tr_res);
 
-			if (CompleteCB != null) CompleteCB(tr_res);
+			if (CompleteCB != null) CompleteCB(ep_, tr_res);
 		}
 
 
