@@ -35,5 +35,11 @@ namespace XingSharp
 			}
 			result.map_.Add(obj_name, kv);
 		}
+
+	
+		protected void LogMsg(string msg)
+		{
+			Console.WriteLine(msg);
+		}
 	}
 }

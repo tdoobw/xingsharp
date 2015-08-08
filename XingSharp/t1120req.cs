@@ -15,8 +15,8 @@ namespace XingSharp
 {
 	public class t1102Req : TRRequest
 	{
-		public t1102Req(EndPoint ep)
-		: base(ep)
+		public t1102Req(EndPoint from_ep)
+		: base(from_ep)
 		{
 			
 		}
@@ -70,6 +70,7 @@ namespace XingSharp
 
 		private void ErrorFunc(int etk_req_ec, string err_msg)
 		{
+			LogMsg("[t1102Req::ErrorFunc] etk_req_ec(" + etk_req_ec + "), err_msg(" + err_msg + ")");
 		}
 
 
@@ -78,6 +79,7 @@ namespace XingSharp
 
 		private void MessageFunc(string msg_code, string msg)
 		{
+			LogMsg("[t1102Req::MessageFunc] msg_code(" + msg_code + "), msg(" + msg + ")");
 		}
 	}
 }

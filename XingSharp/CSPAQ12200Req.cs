@@ -64,6 +64,7 @@ namespace XingSharp
 
 		private void ErrorFunc(int etk_req_ec, string err_msg)
 		{
+			LogMsg("[CSPAQ12200Req::ErrorFunc] etk_req_ec(" + etk_req_ec + "), err_msg(" + err_msg + ")");
 		}
 
 
@@ -74,6 +75,7 @@ namespace XingSharp
 		private void MessageFunc(string msg_code, string msg)
 		{
 			if (msg_code == "00000" || msg_code == "00310") return; //skip success
+			LogMsg("[CSPAQ12200Req::MessageFunc] msg_code(" + msg_code + "), msg(" + msg + ")");
 		}
 
 
