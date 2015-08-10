@@ -38,7 +38,11 @@ namespace XingSharp
 			query.ErrorCB = new XingQuery.ErrorFunc(this.ErrorFunc);
 
 			ec = sess.Execute<t1102._t1102InBlock>(query, false);
-			if (ec < 0) return -1;
+			if (ec < 0)
+			{
+				LogMsg("[t1102Req::Request] Execute fail. : ec(" + ec + ")");
+				return -1;
+			}
 
 			return 0;
 		}

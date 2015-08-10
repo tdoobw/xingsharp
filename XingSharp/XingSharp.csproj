@@ -42,11 +42,13 @@
   <ItemGroup>
     <Compile Include="CSPAQ12200.cs" />
     <Compile Include="CSPAQ12200Req.cs" />
+    <Compile Include="CSPAT00600.cs" />
+    <Compile Include="CSPAT00600Req.cs" />
     <Compile Include="MultiMap.cs" />
     <Compile Include="t0424.cs" />
     <Compile Include="t0424Req.cs" />
     <Compile Include="t1102.cs" />
-    <Compile Include="t1120req.cs" />
+    <Compile Include="t1120Req.cs" />
     <Compile Include="TRRequest.cs" />
     <Compile Include="TRResult.cs" />
     <Compile Include="XingSession.cs" />

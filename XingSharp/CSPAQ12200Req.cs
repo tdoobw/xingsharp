@@ -36,7 +36,11 @@ namespace XingSharp
 			query.MessageCB = new XingQuery.MessageFunc(this.MessageFunc);
 
 			int ec = sess.Execute<CSPAQ12200._CSPAQ12200InBlock1>(query, false);
-			if (ec < 0) return -1;
+			if (ec < 0)
+			{
+				LogMsg("[CSPAQ12200::Request] Execute fail. : ec(" + ec + ")");
+				return -1;
+			}
 
 			return 0;
 		}

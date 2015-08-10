@@ -40,8 +40,12 @@ namespace XingSharp
 			query.MessageCB = new XingQuery.MessageFunc(this.MessageFunc);
 
 			ec = sess.Execute<t0424._t0424InBlock>(query, false);
-			if (ec < 0) return -1;
-
+			if (ec < 0) 
+			{
+				LogMsg("[t0424::Request] Execute fail. : ec(" + ec + ")");
+				return -1;
+			}
+			
 			return 0;
 		}
 
